@@ -12,7 +12,7 @@ C. Shi et al., "A Label-Free and Non-Monotonic Metric for Evaluating Denoising i
 BibTeX of the paper:  
 ```
 @ARTICLE{shi2024labelfree,  
-  author={Shi,Chenyang, Guo, Shasha, Wei Boyi, Liu, Hanxiao Zhang, Yibo, Song, Ningfang and Jin, Jing},  
+  author={Shi,Chenyang, Guo, Shasha, Wei, Boyi, Liu, Hanxiao, Zhang, Yibo, Song, Ningfang and Jin, Jing},  
   journal={IEEE Transactions on Circuits and Systems for Video Technology},   
   title={A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras},   
   year={2025},  
