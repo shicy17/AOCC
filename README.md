@@ -9,7 +9,9 @@ Event cameras are renowned for their high efficiency due to outputting a sparse,
 
 Citations are welcome, and if you use all or part of our codes in a published article or project, please cite: 
 
-C. Shi et al., "A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras," in IEEE Transactions on Circuits and Systems for Video Technology, doi: 
+C. Shi et al., "A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras," in IEEE Transactions on Circuits and Systems for Video Technology, doi:.
+
+
 BibTeX of the paper:  
 ```
 @ARTICLE{shi2025labelfree,  
