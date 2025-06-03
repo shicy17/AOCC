@@ -251,10 +251,10 @@ def main():
         writer.writerow(['Interval (us)', 'Mean Contrast', 'Median Contrast', 'RMS Contrast'])
 
     results = []
-
+    events = list(read_events_from_txt(file_path))
+    
     # Calculate Continuous Contrast Curve (CCC)
     for interval in tqdm.tqdm(np.arange(min_interval, max_interval, step)):
-        events = list(read_events_from_txt(file_path))
         accumulation_images = create_accumulation_images(events, width, height, interval)
         contrasts = [calculate_contrast(apply_gaussian_blur(frame, 5, 2)) for frame in accumulation_images]
         mean_contrast, median_contrast, rms_contrast = compute_statistics(contrasts)
