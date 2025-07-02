@@ -29,10 +29,21 @@ Ensure you have Python 3.7 or higher installed on your system.
 
 ## Usage
 
+### Download Test Data
+
+Before running the code, download the required test data file:
+
+1. Download the test data from: [https://bhpan.buaa.edu.cn/link/AA710008ED8DAD4C39BE571181B9D4DBE8](https://bhpan.buaa.edu.cn/link/AA710008ED8DAD4C39BE571181B9D4DBE8)
+2. Extract and place the file `f171hz_fla.txt` in the project root directory
+
+### Run the Code
+
 Run the main AOCC implementation:
 ```bash
 python AOCC.py
 ```
+
+**Note:** Ensure the test data file `f171hz_fla.txt` is in the same directory as `AOCC.py` before running the code.
 
 ## Requirements
 
