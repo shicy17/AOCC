@@ -19,7 +19,7 @@ Ensure you have Python 3.7 or higher installed on your system.
 
 2. Install the required packages using pip:
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements_txt.txt
    ```
 
    Alternatively, you can install the dependencies manually:
