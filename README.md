@@ -22,7 +22,7 @@ BibTeX of the paper:
   doi={10.1109/TCSVT.2025.3598329}}
 ```
 
-## Requirements
+## Installation
 
 Ensure you have Python 3.7 or higher installed on your system.
 
