@@ -4,25 +4,42 @@ This is an official implementation of Area of Continuous Contrast Curve (AOCC) m
 # Abstract
 Event cameras are renowned for their high efficiency due to outputting a sparse, asynchronous stream of events. However, they are plagued by noisy events, especially in low light conditions. Denoising is an essential task for event cameras, but evaluating denoising performance is challenging. Label-dependent denoising metrics involve artificially adding noise to clean sequences, complicating evaluations. Moreover, the majority of these metrics are monotonic, which can inflate scores by removing substantial noise and valid events. To overcome these limitations, we propose the first label-free and non-monotonic evaluation metric, the area of the continuous contrast curve (AOCC), which utilizes the area enclosed by event frame contrast curves across different time intervals. This metric is inspired by how events capture the edge contours of scenes or objects with high temporal resolution. An effective denoising method removes noise without eliminating these edge-contour events, thus preserving the contrast of event frames. Consequently, contrast across various time ranges serves as a metric to assess denoising effectiveness. As the time interval lengthens, the curve will initially rise and then fall. The proposed metric is validated through both theoretical and experimental evidence.
 
+# :eyes:Demonstration
 
-## 👉Citation   
+The experimental results of our proposed AOCC method for label-free event camera denoising evaluation.
+
+| CCC Curves | AOCC Value Curves | Label-Dependent Parameters |
+|:---:|:---:|:---:|
+| <img width="300" alt="qmlpf_3hz_legendfree_page_1" src="https://github.com/user-attachments/assets/a9ddc857-eee6-43b6-b24a-1d59aa5deb40" /> | <img width="300" alt="qmlpf_3hz_aocc_page_1" src="https://github.com/user-attachments/assets/44dd82a7-77ef-4efb-a80d-08730e5d4ca8" /> | <img width="300" alt="other_3hz_page_1" src="https://github.com/user-attachments/assets/f3f1492d-e19d-43eb-ab86-c7cdb02c213e" /> |
+
+**Figure 1:** CCC curves obtained by scanning QMLPF denoising method under various parameter conditions.  
+**Figure 2:** AOCC value curves corresponding to the CCC curves in Figure 1.  
+**Figure 3:** Label-dependent denoising parameters under different parameter conditions.
+
+## Key Contribution
+
+Our proposed **AOCC method achieves excellent non-monotonicity**, representing the **first truly effective, label-free, non-monotonic evaluation method for event camera denoising**. This breakthrough eliminates the need for ground truth labels while maintaining robust evaluation capabilities, making it particularly valuable for practical event camera denoising applications where labeled data is scarce or unavailable.
+
+
+
+# 👉Citation   
 
 C. Shi et al., "A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras," in IEEE Transactions on Circuits and Systems for Video Technology, doi: 10.1109/TCSVT.2025.3598329.
 
 BibTeX of the paper:  
 ```
-@ARTICLE{10804847,
+@ARTICLE{shi2025label,
   author={Shi, Chenyang and Guo, Sha Sha and Wei, Boyi and Liu, Hanxiao and Zhang, Yibo and Song, Ningfang and Jin, Jing},
   journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
   title={A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras}, 
-  year={},
+  year={2025},
   volume={35},
   number={},
-  pages={},
+  pages={1},
   doi={10.1109/TCSVT.2025.3598329}}
 ```
 
-## Installation
+# :sparkles:Installation
 
 Ensure you have Python 3.7 or higher installed on your system.
 
@@ -44,16 +61,16 @@ Ensure you have Python 3.7 or higher installed on your system.
    pip install numpy>=1.21.0 opencv-python>=4.5.0 tqdm>=4.62.0 matplotlib>=3.5.0 pandas>=1.3.0 scipy>=1.7.0
    ```
 
-## Usage
+# :relaxed:Usage
 
-### Download Test Data
+## Download Test Data
 
 Before running the code, download the required test data file:
 
 1. Download the test data from: [https://bhpan.buaa.edu.cn/link/AA710008ED8DAD4C39BE571181B9D4DBE8](https://bhpan.buaa.edu.cn/link/AA710008ED8DAD4C39BE571181B9D4DBE8)
 2. Extract and place the file `f171hz_fla.txt` in the project root directory
 
-### Run the Code
+## Run the Code
 
 Run the main AOCC implementation:
 ```bash
@@ -62,7 +79,7 @@ python AOCC.py
 
 **Note:** Ensure the test data file `f171hz_fla.txt` is in the same directory as `AOCC.py` before running the code.
 
-## Requirements
+# Requirements
 
 The code requires the following Python packages:
 - numpy (≥1.21.0)
