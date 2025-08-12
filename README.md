@@ -35,7 +35,7 @@ BibTeX of the paper:
   year={2025},
   volume={35},
   number={},
-  pages={1},
+  pages={1-1},
   doi={10.1109/TCSVT.2025.3598329}}
 ```
 
