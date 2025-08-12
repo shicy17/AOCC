@@ -7,8 +7,6 @@ Event cameras are renowned for their high efficiency due to outputting a sparse,
 
 ## 👉Citation   
 
-Citations are welcome, and if you use all or part of our codes in a published article or project, please cite: 
-
 C. Shi et al., "A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras," in IEEE Transactions on Circuits and Systems for Video Technology, doi: 10.1109/TCSVT.2025.3598329.
 
 BibTeX of the paper:  
@@ -24,7 +22,7 @@ BibTeX of the paper:
   doi={10.1109/TCSVT.2025.3598329}}
 ```
 
-## Install
+## Requirements
 
 Ensure you have Python 3.7 or higher installed on your system.
 
