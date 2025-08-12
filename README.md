@@ -8,11 +8,11 @@ Event cameras are renowned for their high efficiency due to outputting a sparse,
 
 The experimental results of our proposed AOCC method for label-free event camera denoising evaluation.
 
-| CCC Curves | AOCC Value Curves | Label-Dependent Parameters |
+| CCC | AOCC Value Curves | Label-Dependent Parameters |
 |:---:|:---:|:---:|
 | <img width="300" alt="qmlpf_3hz_legendfree_page_1" src="https://github.com/user-attachments/assets/a9ddc857-eee6-43b6-b24a-1d59aa5deb40" /> | <img width="300" alt="qmlpf_3hz_aocc_page_1" src="https://github.com/user-attachments/assets/44dd82a7-77ef-4efb-a80d-08730e5d4ca8" /> | <img width="300" alt="other_3hz_page_1" src="https://github.com/user-attachments/assets/f3f1492d-e19d-43eb-ab86-c7cdb02c213e" /> |
 
-**Figure 1:** CCC curves obtained by scanning QMLPF denoising method under various parameter conditions.  
+**Figure 1:** CCC obtained by scanning QMLPF denoising method under various parameter conditions.  
 **Figure 2:** AOCC value curves corresponding to the CCC curves in Figure 1.  
 **Figure 3:** Label-dependent denoising parameters under different parameter conditions.
 
