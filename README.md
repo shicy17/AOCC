@@ -33,7 +33,7 @@ BibTeX of the paper:
   journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
   title={A Label-Free and Non-Monotonic Metric for Evaluating Denoising in Event Cameras}, 
   year={2025},
-  volume={35},
+  volume={},
   number={},
   pages={1-1},
   doi={10.1109/TCSVT.2025.3598329}}
