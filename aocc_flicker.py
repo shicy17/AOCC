@@ -1,47 +1,25 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-aocc_flicker_v4_global_peakdiff_ratio.py — Multi-frequency flicker residual + StructuralAOCC,
-GLOBAL (whole-image) version. No ROI selection, no spatial sub-region.
+Copyright (C) 2025 Beihang University, Neuromorphic Vision Perception and Computing Group
 
-I/O model: 1 raw + N PFD variants (+ optional EFR) for ONE sequence.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-ResidualRatio is raw-normalized dB peak-over-background prominence, so raw = 1. Score mode is selectable.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-Residual is computed PER-SEQUENCE on the tile-aggregated spectrum, using
-only the top-N strongest peaks detected on the raw aggregate spectrum:
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-    Residual(m) = db_peak_prominence(m) / db_peak_prominence(raw)
-    db_peak_prominence(m) = mean_{f in P_topN} max(0, 10*log10((agg_m(f)+eps)/(bg_median(m)+eps)) - delta_db)
-    bg_median(m)          = median of agg_m(f) over non-peak bins
-    total_band_energy(m)  = sum of agg_m(f) over the analysis band
-
-Properties:
-  - Self-contained per sequence (no normalization to raw, no SNR ratio).
-  - Uses BOTH peak energy AND background energy of the same sequence.
-  - Peak excess is a clamped peak-minus-background DIFFERENCE, divided by
-    the total band energy of the same sequence.
-  - Only top-N peaks contribute (default N=3); minor spurious peaks are
-    intentionally ignored.
-  - Asymptotic: raw with a clear flicker peak ⇒ residual > 0;
-    denoiser that suppresses the peak to bg level ⇒ residual ≈ 0.
-
-Usage (1 raw + 4 PFD variants):
-python /home/ps/DOCKER/EFR-main/aocc_flicker_v4_global.py \
-  --raw_file /home/ps/DOCKER/PFD-main/aocc-flicker/pinshan50-03.txt \
-  --pfd_files \
-    /home/ps/DOCKER/PFD-main/aocc-flicker/AOCC-flicker-eventpresentation-1/PFD_denoised_25000_2_pinshan50-03.txt \
-    /home/ps/DOCKER/PFD-main/aocc-flicker/AOCC-flicker-eventpresentation-2/PFD_denoised_25000_2_pinshan50-03.txt \
-    /home/ps/DOCKER/PFD-main/aocc-flicker/AOCC-flicker-eventpresentation-3/PFD_denoised_25000_2_pinshan50-03.txt \
-    /home/ps/DOCKER/PFD-main/aocc-flicker/AOCC-flicker-eventpresentation-4/PFD_denoised_25000_2_pinshan50-03.txt \
-  --pfd_labels 1 2 3 4  --output_csv ./50-03out.csv \
-  --ccc_dir ./50-03ccc  --width 1280 --height 720 --min_events_per_tile 100 \
-  --microbin_us 500 --peak_ratio_threshold 8 \
-  --peak_dilation_bins 4 --n_residual_peaks 3 \
-  --residual_gain 3.0  --residual_zero_threshold 0.05 \
-  --peak_excess_bg_threshold_factor 0.3 \
-  --global_dft_plots --dft_fmax_hz 500 --dft_ref_freq_hz 100
+Copyright © Beihang University, Neuromorphic Vision Perception and Computing Group.
+License: This code is licensed under the GNU General Public License v3.0.
+You can redistribute it and/or modify it under the terms of the GPL-3.0 License.
 """
+
+
 from __future__ import annotations
 
 import argparse
