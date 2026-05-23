@@ -5,7 +5,7 @@ Official implementation of the **Area of Continuous Contrast Curve (AOCC)** fami
 
 This repository contains:
 - **AOCC** — general denoising evaluation (IEEE TCSVT 2026)
-- **AOCC-flicker** — extension for flicker-noise suppression evaluation <!-- TODO: update venue/status once accepted -->
+- **AOCC-flicker** — extension for flicker-noise suppression evaluation (Under Review) <!-- TODO: update venue/status once accepted -->
 
 ---
 
