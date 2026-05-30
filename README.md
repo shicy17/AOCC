@@ -149,6 +149,62 @@ A full annotated example is included in the docstring at the top of `aocc_flicke
 
 ---
 
+## :rocket: C++ Implementation (Faster)
+
+For large-scale batch evaluation, a standalone C++ implementation of **AOCC** is provided. It reproduces the same continuous contrast curve (CCC) and AOCC computation as `AOCC.py`, while running substantially faster — useful when sweeping many sequences or using a fine interval grid. It depends only on OpenCV and carries no Python runtime overhead.
+
+> This C++ build covers **AOCC** (general denoising evaluation) only. It is not the AOCC-flicker variant.
+
+### Build
+
+Requirements:
+- A C++17 compiler (for `std::filesystem`)
+- OpenCV 4
+
+```bash
+g++ -Wall -Wextra -O3 AOCC.cpp -o AOCC $(pkg-config --cflags --libs opencv4)
+```
+
+> Use `-O3` for best throughput; switch to `-g3` only while debugging.
+
+### Configure
+
+Run parameters are set at the top of `main()` — edit them before building:
+
+| Parameter | Meaning | Default |
+|---|---|---|
+| `input_folder` | Directory of input `.txt` event files | — |
+| `results_csv_path` | Output directory for per-file CCC csv files | — |
+| `save_directory` | Output path for the AOCC summary csv | — |
+| `image_output_dir` | Output directory for accumulation frames and CCC plots | — |
+| `width`, `height` | Sensor resolution | `1280`, `720` |
+| `min_interval`, `max_interval`, `step` | Time-interval sweep in microseconds | `4000`, `50001`, `1000` |
+| `min_value`, `max_value` | AOCC integration bounds in microseconds | `0`, `max_interval - 1` |
+
+### Input Format
+
+Each input is a plain-text file with one event per line, space-separated as:
+
+```
+x y p t
+```
+
+An optional fifth column is treated as a label; when present, only events with label `1` are kept. A commented `t x y p` ordering is available in `read_events_from_txt` if your data uses that layout.
+
+### Run
+
+```bash
+./AOCC
+```
+
+All `.txt` files in `input_folder` are processed in sorted order.
+
+### Outputs
+
+- **Per-file CCC** — `<results_csv_path>/<name>_ccc.csv` with columns `Interval (us)`, `Mean Contrast`, `Median Contrast`, `RMS Contrast`.
+- **AOCC summary** — `<save_directory>` with columns `Filename`, `Area Under Curve`, one row per sequence.
+- **Diagnostics** — accumulation frames and a CCC curve plot with the AOCC region shaded, under `<image_output_dir>`.
+
 ## :books: Citation
 
 If you use **AOCC**, please cite:
