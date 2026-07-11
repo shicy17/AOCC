@@ -1,20 +1,13 @@
 # AOCC: Label-Free, Non-Monotonic Metrics for Event-Camera Denoising Evaluation 
-# AOCC-flicker: Label-Free Evaluation of Flicker Noise Denoising for Event Cameras
 
 Official implementation of the **Area of Continuous Contrast Curve (AOCC)** family of label-free, non-monotonic evaluation metrics for event-camera denoising.
 
 This repository contains:
 - **AOCC** — general denoising evaluation (IEEE TCSVT 2026)
-- **AOCC-flicker** — extension for flicker-noise suppression evaluation (Under Review) <!-- TODO: update venue/status once accepted -->
 
 ---
 
 ## :star2: What's New
-
-- **[2026/05]** Released **AOCC-flicker** — *"AOCC-flicker: Label-Free Evaluation of Flicker Noise Denoising for Event Cameras"*, an extension for evaluating flicker-noise suppression in event cameras. <!-- TODO: fill date when ready --> Highlights:
-  - Frequency-domain residual based on dB peak-over-background prominence aggregated across spatial tiles.
-  - Decoupled structure-preservation and flicker-suppression terms with a closed-form trade-off interval.
-  - Provable invariance to uniform event thinning at leading order, closing a common loophole of count-based proxies.
 - **[2026/01]** AOCC published in IEEE TCSVT, vol. 36, no. 1, pp. 669–684.
 
 ---
@@ -88,53 +81,6 @@ python AOCC.py
 
 > **Note:** Ensure `f171hz_fla.txt` is in the same directory as `AOCC.py` before running.
 
----
-
-### AOCC-flicker — Flicker-Suppression Evaluation
-
-`aocc_flicker.py` implements the **global (whole-image) canonical configuration** used in the paper: tile-aggregated DFT, dB peak-over-background prominence, top-N raw-detected peaks, with no ROI annotation. The ROI-annotated variant is reserved for the ablation in the supplementary material and is not part of this script.
-
-#### Input Format
-
-For each evaluated sequence the script expects:
-- **One** raw event file (no denoising applied).
-- **One or more** denoised event files produced by the method(s) under evaluation (e.g. PFD variants).
-- Optionally, an event file produced by a baseline such as EFR.
-
-Each event file is a plain-text file with four numeric tokens per line; the script auto-detects `xypt` vs. `txyp` ordering.
-
-<!-- TODO: add download link for flicker test data, e.g. one raw + several PFD variants of a single sequence -->
-
-#### Run
-
-Minimal invocation (1 raw + 4 PFD variants of a single sequence):
-
-```bash
-python aocc_flicker.py \
-  --raw_file       path/to/sequence_raw.txt \
-  --pfd_files      path/to/sequence_pfd_v1.txt \
-                   path/to/sequence_pfd_v2.txt \
-                   path/to/sequence_pfd_v3.txt \
-                   path/to/sequence_pfd_v4.txt \
-  --pfd_labels     1 2 3 4 \
-  --output_csv     ./flicker_out.csv \
-  --ccc_dir        ./flicker_diag \
-  --width 1280 --height 720 \
-  --microbin_us 500 \
-  --n_residual_peaks 3 \
-  --residual_gain 3.0 \
-  --residual_zero_threshold 0.05 \
-  --global_dft_plots --dft_fmax_hz 500 --dft_ref_freq_hz 100
-```
-
-To include an EFR baseline alongside the PFD variants, add `--efr_file path/to/sequence_efr.txt`.
-
-#### Outputs
-
-- `--output_csv`: per-method metrics (`structural_aocc`, `residual_ratio`, `db_peak_prominence`, `score`, etc.).
-- `--ccc_dir`: diagnostic plots — per-tile flicker-purity heatmaps, global DFT panels, and tile-aggregate spectrum panels with the top-N detected peaks marked.
-
-A full annotated example is included in the docstring at the top of `aocc_flicker.py`.
 
 ---
 
